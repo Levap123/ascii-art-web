@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ascii Art Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/shadow.css">
+    <link rel="icon" type="image/x-icon" href="/static/image/favicon.png">
+  </head>
+  <body>
+    
+    <div class="container text-center">
+        <div id="particles-js"></div>
+        <div class="row">
+          <div class="col">
+            <div class="title">
+                <h1>ASCII ART WEB</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10">          
+            <form action="/ascii-art" method="post" id="ascii">
+                <div class="mb-3">
+                    <textarea class="form-control" id="original_text" rows="10" name="ascii"
+                    placeholder="Hello world!"></textarea>
+                </div>
+                
+                <div class="mb-3 form-check">
+                      <div class="form-check form-check-inline">                       
+                        <input type="radio" class="btn-check" name="banner" id="standard" value="standard" checked>
+                        <label class="btn btn-outline-secondary" for="standard">STANDARD</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input type="radio" class="btn-check" name="banner" id="thinkertoy" value="thinkertoy">
+                        <label class="btn btn-outline-secondary" for="thinkertoy">THINKERTOY</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input type="radio" class="btn-check" name="banner" id="shadow" value="shadow">
+                        <label class="btn btn-outline-secondary" for="shadow">SHADOW</label>
+                      </div>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-warning" type="submit">CONVERT TO ASCII</button>
+                  </div>
+              </form>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-xs-10">
+                    <textarea class="form-control" id="text_ascii" rows="10" style="font-family: revert;" id="result" readonly>{{.}}</textarea>
+            </div>
+        </div>         
+      </div>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="/static/js/assets/particles.min.js"></script>
+    <script type="text/javascript">
+            /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+            particlesJS.load('particles-js', '/static/js/assets/config.json', function() {
+              console.log('callback - particles.js config loaded');
+            });
+    </script>
+  </body>
+</html>

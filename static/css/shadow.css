@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo');
+
+#particles-js {
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+.title {
+	font-family: "Cairo";
+	text-align: center;
+	color: #FFF;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	letter-spacing: 1px;
+	line-height:2
+}
+
+h1 {
+	background-image: url(https://acegif.com/wp-content/uploads/fire-51.gif);
+	background-size: cover;
+	color: transparent;
+	-moz-background-clip: text;
+	-webkit-background-clip: text;
+	text-transform: uppercase;
+	font-size: 120px;
+	margin: 10px 0;
+}
+
+textarea{
+    resize: none;
+    white-space: nowrap;
+    white-space: pre;
+}
