@@ -3,6 +3,8 @@ package service
 import (
 	"fmt"
 	"strings"
+
+	"ascii-art-web/internal/logs"
 )
 
 var hashSum = []string{"86d9947457f6a41a18cb98427e314ff8", "a49d5fcb0d5c59b2e77674aa3ab8bbb1", "a51f800619146db0c42d26db3114c99f"}
@@ -23,6 +25,7 @@ func (s *AsciiService) GenerateWords(target, banner string) (string, error) {
 	charsMap, err := ReadFile(bannersPath + banner)
 	target = replace(target)
 	if err != nil {
+		logs.ErrLogger.Printf("%s\n", err.Error())
 		return "", err
 	}
 	arr := strings.Split(target, "\n")
@@ -34,6 +37,7 @@ func (s *AsciiService) GenerateWords(target, banner string) (string, error) {
 					if val, ok := charsMap[char]; ok {
 						words[i] += val[index]
 					} else {
+						logs.ErrLogger.Printf("character in argument is not allowed\n")
 						return "", fmt.Errorf("character in argument is not allowed\n")
 					}
 				}

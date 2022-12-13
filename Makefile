@@ -1,5 +1,5 @@
 run:
-	docker run -p 0.0.0.0:80:8080 ascii
+	docker run -p 8080:8080 ascii
 
 build:
 	docker build -t ascii .	

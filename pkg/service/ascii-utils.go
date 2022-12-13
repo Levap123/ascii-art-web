@@ -76,7 +76,7 @@ func replace(str string) string {
 	str = strings.ReplaceAll(str, "\\n", "\n")
 	str = strings.ReplaceAll(str, "\r\n", "\n")
 	str = strings.ReplaceAll(str, "\\t", "     ")
-	re_up := regexp.MustCompile(`(\\)([a-zA-Z0-9!?']+)`)
+	re_up := regexp.MustCompile(`(\\)([a-zA-Z0-9!?'";.,/]+)`)
 	str = re_up.ReplaceAllString(str, "$2")
 	return str
 }

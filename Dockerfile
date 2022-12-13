@@ -4,7 +4,6 @@ FROM golang:1.18.3 AS build
 WORKDIR /app
 
 COPY . .
-
 RUN GOOS=linux go build -o main ./cmd/
 
 

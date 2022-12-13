@@ -7,14 +7,31 @@ import (
 	"ascii-art-web/pkg/handler/static"
 )
 
+type InputBody struct{}
+
 func (h *Handler) AsciiArt(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
 		logs.LoggerErr(r.URL.Path, r.Method, "ASCII art", http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
 		return
 	}
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		logs.LoggerErr(r.URL.Path, r.Method, "ASCII art", http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		return
+	}
+
+	for key := range r.PostForm {
+		if !(key == "ascii" || key == "banner") {
+			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+			logs.LoggerErr(r.URL.Path, r.Method, "ASCII art", http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+			return
+		}
+	}
+
 	target := r.FormValue("ascii")
 	banner := r.FormValue("banner")
+
 	ascii, err := h.Service.Ascii.GenerateWords(target, banner)
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
@@ -26,6 +43,5 @@ func (h *Handler) AsciiArt(w http.ResponseWriter, r *http.Request) {
 		logs.LoggerErr(r.URL.Path, r.Method, "ASCII art", http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
-
 	logs.LoggerOk(r.URL.Path, r.Method, "ASCII art", http.StatusOK)
 }

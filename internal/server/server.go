@@ -6,17 +6,17 @@ import (
 )
 
 type Server struct {
-	HttpServer *http.Server
+	httpServer *http.Server
 }
 
 func (s *Server) Run(port string, handler http.Handler) error {
-	s.HttpServer = &http.Server{
-		Addr:           ":" + port,
+	s.httpServer = &http.Server{
+		Addr:           "0.0.0.0:" + port,
 		Handler:        handler,
 		MaxHeaderBytes: http.DefaultMaxHeaderBytes,
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
 	}
 	
-	return s.HttpServer.ListenAndServe()
+	return s.httpServer.ListenAndServe()
 }

@@ -7,7 +7,7 @@ import (
 	"ascii-art-web/pkg/service"
 )
 
-const port string = "8080"
+const port = "80"
 
 func main() {
 	service := service.NewService()
